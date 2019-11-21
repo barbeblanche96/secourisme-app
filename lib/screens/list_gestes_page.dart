@@ -28,6 +28,13 @@ import 'package:secourisme/screens/gestes/gelure.dart';
 import 'package:secourisme/screens/gestes/extraction.dart';
 import 'package:secourisme/screens/gestes/hemorragie_externe.dart';
 import 'package:secourisme/screens/gestes/hemorragie_interne.dart';
+import 'package:secourisme/screens/gestes/hypertension.dart';
+import 'package:secourisme/screens/gestes/hypothermie.dart';
+import 'package:secourisme/screens/gestes/ingestion.dart';
+import 'package:secourisme/screens/gestes/insolation.dart';
+import 'package:secourisme/screens/gestes/intoxication.dart';
+import 'package:secourisme/screens/gestes/luxation.dart';
+import 'package:secourisme/screens/gestes/malaise.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key key, this.title}) : super(key: key);
@@ -190,6 +197,41 @@ class _ListPageState extends State<ListPage> {
           context,
           MaterialPageRoute(
               builder: (context) => HemorragieInternePage()));
+    else if(id=="29")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HypertensionPage()));
+    else if(id=="30")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HypothermiePage()));
+    else if(id=="31")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => IngestionPage()));
+    else if(id=="32")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => InsolationPage()));
+    else if(id=="33")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => IntoxicationPage()));
+    else if(id=="34")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => LuxationPage()));
+    else if(id=="35")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MalaisePage()));
 
   }
 
