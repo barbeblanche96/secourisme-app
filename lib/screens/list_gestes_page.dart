@@ -35,6 +35,16 @@ import 'package:secourisme/screens/gestes/insolation.dart';
 import 'package:secourisme/screens/gestes/intoxication.dart';
 import 'package:secourisme/screens/gestes/luxation.dart';
 import 'package:secourisme/screens/gestes/malaise.dart';
+import 'package:secourisme/screens/gestes/massage_cardiaque_adulte.dart';
+import 'package:secourisme/screens/gestes/massage_cardiaque_enfant.dart';
+import 'package:secourisme/screens/gestes/morsure.dart';
+import 'package:secourisme/screens/gestes/morsure_serpent.dart';
+import 'package:secourisme/screens/gestes/noyade.dart';
+import 'package:secourisme/screens/gestes/personne_inconsciente.dart';
+import 'package:secourisme/screens/gestes/pincement_doigt.dart';
+import 'package:secourisme/screens/gestes/piqure_insecte.dart';
+import 'package:secourisme/screens/gestes/piqure_meduse.dart';
+import 'package:secourisme/screens/gestes/piqure_vive.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key key, this.title}) : super(key: key);
@@ -232,6 +242,56 @@ class _ListPageState extends State<ListPage> {
           context,
           MaterialPageRoute(
               builder: (context) => MalaisePage()));
+    else if(id=="36")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MassageAdultePage()));
+    else if(id=="37")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MassageEnfantPage()));
+    else if(id=="38")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MorsurePage()));
+    else if(id=="39")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MorsureSerpentPage()));
+    else if(id=="40")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => NoyadePage()));
+    else if(id=="41")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PersonneInconscientePage()));
+    else if(id=="42")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PincementDoigtPage()));
+    else if(id=="43")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PiqureInsectePage()));
+    else if(id=="44")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PiqureMedusePage()));
+    else if(id=="45")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PiqureVivePage()));
 
   }
 

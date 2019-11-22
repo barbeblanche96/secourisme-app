@@ -88,7 +88,7 @@ class _MalaisePageState extends State<MalaisePage> {
                   SizedBox(height: 5.0,),
                   Text("Demandez à la victime s'il s'agit de son premier malaise et si elle doit prendre des médicaments (le cas échéant donnez les lui).", textAlign: TextAlign.justify,),
                   SizedBox(height: 5.0,),
-                  Center(child: Image.asset("assets/gestes/alongtetebasse.jpg"),),
+                  Center(child: Image.asset("assets/gestes/alongtetebasse.gif"),),
                   SizedBox(height: 5.0,),
                   Text("Si la victime demande spontanément du sucre, lui en donner, de préférence en morceaux.", textAlign: TextAlign.justify,),
                   SizedBox(height: 5.0,),
