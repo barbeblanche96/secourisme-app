@@ -118,6 +118,7 @@ class _PersonneInconscientePageState extends State<PersonneInconscientePage> {
                   SizedBox(height: 5.0,),
                   Container( padding: EdgeInsets.fromLTRB(5, 0, 0, 5), child: Text("- placez la paume d'une main sur le front pour appuyer vers le bas et incliner la tête en arrière.", textAlign: TextAlign.justify,),),
                   Container( padding: EdgeInsets.fromLTRB(5, 0, 0, 5), child: Text("- placez 2 ou 3 doigts de l'autre main juste sous la pointe du menton en prenant appui sur l'os pour l'élever et le faire avancer. S'aider éventuellement du pouce pour saisir le menton.", textAlign: TextAlign.justify,),),
+                  SizedBox(height: 5.0,),
                   Center(child: Image.asset("assets/gestes/victinc02.gif"),),
                   SizedBox(height: 5.0,),
                   Text("La bascule de la tête en arrière et l'élévation du menton entraînent la langue qui se décolle du fond de la gorge, ce qui permet le passage de l'air.", textAlign: TextAlign.justify,),
