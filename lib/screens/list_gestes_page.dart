@@ -45,6 +45,16 @@ import 'package:secourisme/screens/gestes/pincement_doigt.dart';
 import 'package:secourisme/screens/gestes/piqure_insecte.dart';
 import 'package:secourisme/screens/gestes/piqure_meduse.dart';
 import 'package:secourisme/screens/gestes/piqure_vive.dart';
+import 'package:secourisme/screens/gestes/plaie_grave.dart';
+import 'package:secourisme/screens/gestes/plaie_main.dart';
+import 'package:secourisme/screens/gestes/plaie_simple.dart';
+import 'package:secourisme/screens/gestes/pls.dart';
+import 'package:secourisme/screens/gestes/premier_geste_urgence.dart';
+import 'package:secourisme/screens/gestes/prevention_risque.dart';
+import 'package:secourisme/screens/gestes/reanimation.dart';
+import 'package:secourisme/screens/gestes/saignement_nez.dart';
+import 'package:secourisme/screens/gestes/traumatisme_cranien.dart';
+import 'package:secourisme/screens/gestes/ventilation_artificielle.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key key, this.title}) : super(key: key);
@@ -292,6 +302,56 @@ class _ListPageState extends State<ListPage> {
           context,
           MaterialPageRoute(
               builder: (context) => PiqureVivePage()));
+    else if(id=="46")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PlaieGravePage()));
+    else if(id=="47")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PlaieMainPage()));
+    else if(id=="48")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PlaieSimplePage()));
+    else if(id=="49")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PlsPage()));
+    else if(id=="50")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PremierGestePage()));
+    else if(id=="51")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PreventionRisquePage()));
+    else if(id=="52")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ReanimationPage()));
+    else if(id=="53")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => SaignementNezPage()));
+    else if(id=="54")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TraumatismeCranienPage()));
+    else if(id=="55")
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => VentilationPage()));
 
   }
 

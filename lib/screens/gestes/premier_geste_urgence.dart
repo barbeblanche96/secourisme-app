@@ -103,7 +103,7 @@ class _PremierGestePageState extends State<PremierGestePage> {
                   Text("4) APPELEZ LES SECOURS DES QUE POSSIBLE :", style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),),
                   Divider(),
                   SizedBox(height: 5.0,),
-                  Text("Le rôle de l'apprenti sauveteur n'est pas de se substituer aux secours (qu'il s'agisse des Pompiers (18), du SAMU (15), de la Police (17) ou d'un médecin traitant), mais d'essayer de limiter les dommages corporels subis par la victime, voire de la maintenir en vie en attendant l'arrivée de ces secours.", textAlign: TextAlign.justify,),
+                  Text("Le rôle de l'apprenti sauveteur n'est pas de se substituer aux secours ou d'un médecin traitant), mais d'essayer de limiter les dommages corporels subis par la victime, voire de la maintenir en vie en attendant l'arrivée de ces secours.", textAlign: TextAlign.justify,),
                   SizedBox(height: 5.0,),
                   Text("Alertez les secours dès que possible et fournissez leur un maximum d'informations utiles sur la localisation de l'accident, les risques subsistant, le nombre et l'état des victimes, ainsi que sur les mesures prises. Si vous êtes seul, l'alerte des secours devra passer après les gestes d'extrême urgence que sont le bouche à bouche, le massage cardiaque et l'arrêt des éventuelles hémorragies des victimes.", textAlign: TextAlign.justify,),
                 ],
