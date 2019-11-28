@@ -55,6 +55,8 @@ import 'package:secourisme/screens/gestes/reanimation.dart';
 import 'package:secourisme/screens/gestes/saignement_nez.dart';
 import 'package:secourisme/screens/gestes/traumatisme_cranien.dart';
 import 'package:secourisme/screens/gestes/ventilation_artificielle.dart';
+import 'package:secourisme/screens/contact_urgence_page.dart';
+import 'package:secourisme/screens/carnet_medical_page.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key key, this.title}) : super(key: key);
@@ -407,11 +409,19 @@ class _ListPageState extends State<ListPage> {
             ),
             IconButton(
               icon: Icon(Icons.phone, color: Colors.white),
-              onPressed: () {},
+              onPressed: () {
+                //Navigator.pop(context);
+                Route route = MaterialPageRoute(builder: (context) => ContactUrgencePage());
+                Navigator.pushReplacement(context, route);
+              },
             ),
             IconButton(
               icon: Icon(Icons.event_note, color: Colors.white),
-              onPressed: () {},
+              onPressed: () {
+                //Navigator.pop(context);
+                Route route = MaterialPageRoute(builder: (context) => CarnetMedicalPage());
+                Navigator.pushReplacement(context, route);
+              },
             ),
             IconButton(
               icon: Icon(Icons.info, color: Colors.white),
@@ -441,8 +451,20 @@ class _ListPageState extends State<ListPage> {
                     hintText: "Rechercher...",
                     hintStyle: new TextStyle(color: Colors.white)
                 ),
-              );}
+                onChanged: (text) {
+                  setState(() {
+                    if (text.length > 0 ){
+                      gestes = getGestes();
+                      gestes = gestes.where((f) => f.title.toString().toLowerCase().contains(text.toLowerCase())).toList();
+                    }else{
+                      gestes = getGestes();
+                    }
+                  });
+                },
+              );
+            }
             else {
+              gestes = getGestes();
               this.actionIcon = new Icon(Icons.search);
               this.appBarTitle = new Text("Gestes De Secours");
             }
