@@ -8,6 +8,7 @@ class Carnet {
   String rhesus;
   String electrophorese;
   String description_allergie;
+  String autre_observation;
   String contact_perso;
   String adresse;
 
@@ -23,6 +24,7 @@ class Carnet {
         rhesus = json['rhesus'],
         electrophorese = json['electrophorese'],
         description_allergie = json['description_allergie'],
+        autre_observation = json['autre_observation'],
         contact_perso = json['contact_perso'],
         adresse = json['adresse'];
 
@@ -38,6 +40,7 @@ class Carnet {
     'rhesus': rhesus,
     'electrophorese': electrophorese,
     'description_allergie': description_allergie,
+    'autre_observation': autre_observation,
     'contact_perso': contact_perso,
     'adresse': adresse,
   };

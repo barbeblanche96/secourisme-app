@@ -99,7 +99,6 @@ class _ContactUrgencePageState extends State<ContactUrgencePage> {
 
   update_contact (String key, String nom, String number) async{
     contactSave = Contact();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     String id = key;
     contactSave.id = id;
     contactSave.name = nom;
