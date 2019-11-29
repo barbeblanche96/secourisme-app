@@ -41,6 +41,10 @@ class _InfoPageState extends State<InfoPage> {
           // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
           child: ListView(
             children: <Widget>[
+              Text("Cette application vise à mettre à disposition du public quelques gestes de secours à appliquer en cas d'accident, elle permet également de renseigner des informations afin de constituer une fiche médicale et des numéros d'urgences à contacter lorsque vous êtes la victime.", textAlign:TextAlign.justify, style: TextStyle(fontSize: 15.0)),
+              SizedBox(
+                height: 7.0,
+              ),
               Text("L'ensemble des informations relatives aux gestes d'urgence de cette application sont tirées du site : https://www.gestes-secours.com/", textAlign:TextAlign.justify, style: TextStyle(fontSize: 15.0)),
               SizedBox(
                 height: 7.0,
