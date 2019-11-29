@@ -422,34 +422,36 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Modifier votre sexe', style: TextStyle(fontSize: 14.0),),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    onChanged: (String newValue) {
-                      dropdownValue = newValue;
-                      setState(() {
+          content: StatefulBuilder(builder: (BuildContext context, StateSetter setState){
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      onChanged: (String newValue) {
                         dropdownValue = newValue;
-                        carnetLoad.sexe = newValue;
-                      });
-                    },
-                    items: <String>['Masculin', 'Féminin']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    })
-                        .toList(),
+                        setState(() {
+                          dropdownValue = newValue;
+                          carnetLoad.sexe = newValue;
+                        });
+                      },
+                      items: <String>['Masculin', 'Féminin']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      })
+                          .toList(),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
+                ],
+              ),
+            );
+          }),
           actions: <Widget>[
             FlatButton(
               child: const Text('Annuler', style: TextStyle(fontSize: 18, color: Colors.green),),
@@ -480,34 +482,36 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Modifier votre groupe sanguin', style: TextStyle(fontSize: 14.0),),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    onChanged: (String newValue) {
-                      dropdownValue = newValue;
-                      setState(() {
+          content: StatefulBuilder(builder: (BuildContext context, StateSetter setState){
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      onChanged: (String newValue) {
                         dropdownValue = newValue;
-                        carnetLoad.groupe_sanguin = newValue;
-                      });
-                    },
-                    items: <String>['A', 'B', 'AB', 'O']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    })
-                        .toList(),
+                        setState(() {
+                          dropdownValue = newValue;
+                          carnetLoad.groupe_sanguin = newValue;
+                        });
+                      },
+                      items: <String>['A', 'B', 'AB', 'O']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      })
+                          .toList(),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
+                ],
+              ),
+            );
+          }),
           actions: <Widget>[
             FlatButton(
               child: const Text('Annuler', style: TextStyle(fontSize: 18, color: Colors.green),),
@@ -538,34 +542,36 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Modifier votre facteur rhésus', style: TextStyle(fontSize: 14.0),),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    onChanged: (String newValue) {
-                      dropdownValue = newValue;
-                      setState(() {
+          content: StatefulBuilder(builder: (BuildContext context, StateSetter setState){
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      onChanged: (String newValue) {
                         dropdownValue = newValue;
-                        carnetLoad.rhesus = newValue;
-                      });
-                    },
-                    items: <String>['Rhésus positif', 'Rhésus négatif']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    })
-                        .toList(),
+                        setState(() {
+                          dropdownValue = newValue;
+                          carnetLoad.rhesus = newValue;
+                        });
+                      },
+                      items: <String>['Rhésus positif', 'Rhésus négatif']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      })
+                          .toList(),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
+                ],
+              ),
+            );
+          }),
           actions: <Widget>[
             FlatButton(
               child: const Text('Annuler', style: TextStyle(fontSize: 18, color: Colors.green),),
@@ -596,34 +602,36 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Modifier votre électrophorèse', style: TextStyle(fontSize: 14.0),),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    onChanged: (String newValue) {
-                      dropdownValue = newValue;
-                      setState(() {
+          content: StatefulBuilder(builder: (BuildContext context, StateSetter setState){
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      onChanged: (String newValue) {
                         dropdownValue = newValue;
-                        carnetLoad.electrophorese = newValue;
-                      });
-                    },
-                    items: <String>['AA', 'AS', 'SS']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    })
-                        .toList(),
+                        setState(() {
+                          dropdownValue = newValue;
+                          carnetLoad.electrophorese = newValue;
+                        });
+                      },
+                      items: <String>['AA', 'AS', 'SS']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      })
+                          .toList(),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
+                ],
+              ),
+            );
+          }),
           actions: <Widget>[
             FlatButton(
               child: const Text('Annuler', style: TextStyle(fontSize: 18, color: Colors.green),),
