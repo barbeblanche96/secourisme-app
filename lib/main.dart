@@ -8,7 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Secourisme',
       theme: new ThemeData(
           primaryColor: Colors.green, fontFamily: 'Raleway'),
       home: new ListPage(title: 'Gestes De Secours'),

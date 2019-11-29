@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:secourisme/model/geste.dart';
+import 'package:secourisme/widget/floating_menu.dart';
+import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 import 'package:secourisme/screens/gestes/accident.dart';
 import 'package:secourisme/screens/gestes/amputation.dart';
 import 'package:secourisme/screens/gestes/ampoule.dart';
@@ -396,41 +398,7 @@ class _ListPageState extends State<ListPage> {
       ),
     );
 
-    final makeBottom = Container(
-      height: 55.0,
-      child: BottomAppBar(
-        color: Colors.green,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.phone, color: Colors.white),
-              onPressed: () {
-                //Navigator.pop(context);
-                Route route = MaterialPageRoute(builder: (context) => ContactUrgencePage());
-                Navigator.pushReplacement(context, route);
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.event_note, color: Colors.white),
-              onPressed: () {
-                //Navigator.pop(context);
-                Route route = MaterialPageRoute(builder: (context) => CarnetMedicalPage());
-                Navigator.pushReplacement(context, route);
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.info, color: Colors.white),
-              onPressed: () {},
-            )
-          ],
-        ),
-      ),
-    );
+
     final topAppBar = AppBar(
       elevation: 0.1,
       backgroundColor: Colors.green,
@@ -478,7 +446,17 @@ class _ListPageState extends State<ListPage> {
       backgroundColor: Colors.green[50],
       appBar: topAppBar,
       body: makeBody,
-      bottomNavigationBar: makeBottom,
+      floatingActionButton: AnimatedFloatingActionButton(
+        fabButtons: <Widget>[
+          info(context),
+          carnet(context),
+          contact_urgence(context),
+          home(context),
+        ],
+        colorStartAnimation: Colors.green,
+        colorEndAnimation: Colors.green[300],
+        animatedIconData: AnimatedIcons.menu_close,
+      ),
     );
   }
 }

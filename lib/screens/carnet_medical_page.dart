@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:secourisme/screens/contact_urgence_page.dart';
-import 'package:secourisme/screens/list_gestes_page.dart';
 import 'package:secourisme/model/carnet_medical.dart';
 import 'package:secourisme/model/Sharedpref.dart';
 import 'package:toast/toast.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:secourisme/widget/floating_menu.dart';
+import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 
 class CarnetMedicalPage extends StatefulWidget {
   CarnetMedicalPage({Key key, this.title}) : super(key: key);
@@ -22,6 +25,8 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting();
+    Intl.defaultLocale = 'fr_FR';
     load_medical();
   }
 
@@ -47,6 +52,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
   load_medical() async {
         try {
           carnetLoad = Carnet.fromJson(await sharedPref.read('medical'));
+          setState(() {
+            print(carnetLoad.toString());
+          });
         }catch(e){
           print(e);
         }
@@ -122,7 +130,7 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
                     maxLines: 5,
                     keyboardType: TextInputType.multiline,
                     decoration: const InputDecoration(
-                      hintText: 'Description allergie',
+                      hintText: 'Description allergie. Mettez vos allergies séparées d\'une virgule chaque fois',
                     ),),
                 ),
               ],
@@ -663,9 +671,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Nom & Prénom(s):", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Nom & Prénom(s) ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -675,7 +683,7 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
                   ],
                 ),
                 Divider(),
-                Text(carnetLoad.fullname ?? "vide", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
+                Text(carnetLoad.fullname ?? "non défini", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
               ],
             ),
           ),
@@ -687,18 +695,27 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Date de naissance", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Date de naissance ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
+                        DatePicker.showDatePicker(context,
+                            showTitleActions: true,
+                            minTime: DateTime(1900, 1, 1),
+                            maxTime: DateTime.now(), onChanged: (date) {
+                              print('change $date');
+                            }, onConfirm: (date) {
+                              carnetLoad.date_naissance = date.toString().split(" ")[0];
+                              update_medical();
+                            }, currentTime: DateTime.now(), locale: LocaleType.fr);
                       },
                     ),
                   ],
                 ),
                 Divider(),
-                Text("01/12/2019", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
+                Text(carnetLoad.date_naissance != null ? DateFormat("EEEE dd MMMM y").format(DateTime.parse(carnetLoad.date_naissance)) : "non défini" , textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
               ],
             ),
           ),
@@ -709,9 +726,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Sexe", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Sexe ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -732,9 +749,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Taille", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Taille ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -755,9 +772,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Poids:", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Poids ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -778,9 +795,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Groupe Sanguin", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Groupe Sanguin ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -801,9 +818,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Facteur Rhésus", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Facteur Rhésus ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -824,9 +841,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Electrophorèse", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Electrophorèse ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -847,9 +864,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Allergies", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Allergies ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -859,7 +876,7 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
                   ],
                 ),
                 Divider(),
-                Text(carnetLoad.description_allergie ?? "vide", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
+                Text(carnetLoad.description_allergie ?? "non défini", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
               ],
             ),
           ),
@@ -870,9 +887,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Autres observations", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Autres observations ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -882,7 +899,7 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
                   ],
                 ),
                 Divider(),
-                Text(carnetLoad.autre_observation ?? "vide", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
+                Text(carnetLoad.autre_observation ?? "non défini", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
               ],
             ),
           ),
@@ -893,9 +910,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Téléphone personnel", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Téléphone personnel ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -916,9 +933,9 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text("Adresse", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                    Text("Adresse ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                     IconButton(
                       icon: Icon(Icons.edit, color: Colors.black),
                       onPressed: () {
@@ -928,7 +945,7 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
                   ],
                 ),
                 Divider(),
-                Text(carnetLoad.adresse ?? "vide", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
+                Text(carnetLoad.adresse ?? "non défini", textAlign: TextAlign.justify, style: TextStyle(fontSize: 16),),
               ],
             ),
           ),
@@ -938,42 +955,6 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
     );
 
 
-
-    final makeBottom = Container(
-      height: 55.0,
-      child: BottomAppBar(
-        color: Colors.green,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
-              onPressed: () {
-                //Navigator.pop(context);
-                Route route = MaterialPageRoute(builder: (context) => ListPage());
-                Navigator.pushReplacement(context, route);
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.phone, color: Colors.white),
-              onPressed: () {
-                //Navigator.pop(context);
-                Route route = MaterialPageRoute(builder: (context) => ContactUrgencePage());
-                Navigator.pushReplacement(context, route);
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.event_note, color: Colors.white),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.info, color: Colors.white),
-              onPressed: () {},
-            )
-          ],
-        ),
-      ),
-    );
     final topAppBar = AppBar(
       elevation: 0.1,
       backgroundColor: Colors.green,
@@ -985,7 +966,17 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
       backgroundColor: Colors.green[50],
       appBar: topAppBar,
       body: makeBody,
-      bottomNavigationBar: makeBottom,
+      floatingActionButton: AnimatedFloatingActionButton(
+        fabButtons: <Widget>[
+          info(context),
+          carnet(context),
+          contact_urgence(context),
+          home(context),
+        ],
+        colorStartAnimation: Colors.green,
+        colorEndAnimation: Colors.green[300],
+        animatedIconData: AnimatedIcons.menu_close,
+      ),
     );
   }
 }

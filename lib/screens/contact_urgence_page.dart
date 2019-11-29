@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:secourisme/model/contact_urgence.dart';
-import 'package:secourisme/screens/carnet_medical_page.dart';
 import 'package:secourisme/model/Sharedpref.dart';
-import 'package:secourisme/screens/list_gestes_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:secourisme/widget/floating_menu.dart';
+import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 
 class ContactUrgencePage extends StatefulWidget {
   ContactUrgencePage({Key key, this.title}) : super(key: key);
@@ -19,6 +19,7 @@ class ContactUrgencePage extends StatefulWidget {
 class _ContactUrgencePageState extends State<ContactUrgencePage> {
   List<Contact> contacts = [];
   int contact_number = 0;
+  bool empty = true;
   SharedPref sharedPref = SharedPref();
   Contact contactSave = Contact();
   Contact contactLoad = Contact();
@@ -65,6 +66,11 @@ class _ContactUrgencePageState extends State<ContactUrgencePage> {
           print(e);
         }
       }
+    }
+    if (contacts.length > 0 ){
+      empty = false;
+    }else{
+      empty = true;
     }
   }
 
@@ -331,53 +337,31 @@ class _ContactUrgencePageState extends State<ContactUrgencePage> {
       ),
     );
 
-    final makeBody = Container(
-      // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
-      child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: contacts.length,
-        itemBuilder: (BuildContext context, int index) {
-          return makeCard(contacts[index]);
-        },
-      ),
-    );
-
-    final makeBottom = Container(
-      height: 55.0,
-      child: BottomAppBar(
-        color: Colors.green,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
-              onPressed: () {
-                //Navigator.pop(context);
-                Route route = MaterialPageRoute(builder: (context) => ListPage());
-                Navigator.pushReplacement(context, route);
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.phone, color: Colors.white),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.event_note, color: Colors.white),
-              onPressed: () {
-                //Navigator.pop(context);
-                Route route = MaterialPageRoute(builder: (context) => CarnetMedicalPage());
-                Navigator.pushReplacement(context, route);
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.info, color: Colors.white),
-              onPressed: () {},
+    Widget makeBody () {
+      if (empty){
+        return Center(
+          child: Center(
+            child: Container(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: Text("Ajouter + un nouveau numéro d'urgence", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 18.0),),
             )
-          ],
-        ),
-      ),
-    );
+          ),
+        );
+      }else{
+        return Container(
+          // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: contacts.length,
+            itemBuilder: (BuildContext context, int index) {
+              return makeCard(contacts[index]);
+            },
+          ),
+        );
+      }
+    }
+
     final topAppBar = AppBar(
       elevation: 0.1,
       backgroundColor: Colors.green,
@@ -393,8 +377,18 @@ class _ContactUrgencePageState extends State<ContactUrgencePage> {
     return Scaffold(
       backgroundColor: Colors.green[50],
       appBar: topAppBar,
-      body: makeBody,
-      bottomNavigationBar: makeBottom,
+      body: makeBody(),
+      floatingActionButton: AnimatedFloatingActionButton(
+        fabButtons: <Widget>[
+          info(context),
+          carnet(context),
+          contact_urgence(context),
+          home(context),
+        ],
+        colorStartAnimation: Colors.green,
+        colorEndAnimation: Colors.green[300],
+        animatedIconData: AnimatedIcons.menu_close,
+      )
     );
   }
 }
