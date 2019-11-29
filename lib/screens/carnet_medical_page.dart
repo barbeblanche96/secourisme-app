@@ -130,7 +130,7 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
                     maxLines: 5,
                     keyboardType: TextInputType.multiline,
                     decoration: const InputDecoration(
-                      hintText: 'Description allergie. Mettez vos allergies séparées d\'une virgule chaque fois',
+                      hintText: 'Mettez vos allergies séparées d\'une virgule chaque fois. Ex : arachide, poussière...',
                     ),),
                 ),
               ],
@@ -180,7 +180,7 @@ class _CarnetMedicalPageState extends State<CarnetMedicalPage> {
                     maxLines: 5,
                     keyboardType: TextInputType.multiline,
                     decoration: const InputDecoration(
-                      hintText: 'Autres observations',
+                      hintText: 'Autres observations concernant votre santé. Ex : mauvaise vision, tremblement des mains, ...',
                     ),),
                 ),
               ],
